@@ -1,7 +1,10 @@
 import { createClient } from '@supabase/supabase-js'
 
-// Прямое указание ключей (для теста)
-const supabaseUrl = 'https://pnnyybkffogjjnftrgpk.supabase.co'
-const supabaseAnonKey = 'sb_publishable_L7DucK1bLCuiWHY-RXvdDg_UK2oGfDX'
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+if (!supabaseUrl || !supabaseAnonKey) {
+  throw new Error('Missing Supabase environment variables')
+}
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
